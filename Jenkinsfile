@@ -24,7 +24,7 @@ pipeline {
         stage('Subir proyecto AWS s3') {
             steps {
                 withAWS(credentials: 'aws-alabrador', region: 'eu-central-1') {
-                    sh 'aws s3 sync . s3://$BUCKET --delete --exclude ".git"'
+                    sh 'aws s3 sync ./dist/ s3://$BUCKET --delete --exclude ".git"'
                     sh 'aws s3 ls s3://$BUCKET'
                 }
             }
@@ -38,6 +38,15 @@ pipeline {
                     }
                 }
             }
+        }
+    }
+
+    post {
+        completado {
+            echo 'Pipeline ejecutado correctamente.'
+        }
+        fallido {
+            echo 'Hubo un error en el pipeline.'
         }
     }
 }

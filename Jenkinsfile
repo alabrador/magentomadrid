@@ -6,12 +6,6 @@ pipeline {
 
     stages {
         stage('Init'){
-            agent {
-                docker {
-                    image 'node:alpine'
-                    args '--privileged -it -u root'
-                }
-            }
             steps {
                 sh 'npm install'
             }
@@ -22,12 +16,6 @@ pipeline {
             }
         }
         stage('Build'){
-            agent {
-                docker {
-                    image 'node:alpine'
-                    args '--privileged -it -u root'
-                }
-            }
             steps {
                 sh 'npm run build'
                 stash includes: 'dist/**/**', name: 'dist'

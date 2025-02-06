@@ -5,7 +5,7 @@ pipeline {
     }
 
     stages {
-        stage('Stage to s3') {
+        stage('Deployment AWS s3') {
             steps {
                 withAWS(credentials: 'aws-alabrador', region: 'eu-central-1') {
                     sh 'aws s3 sync . s3://$BUCKET'

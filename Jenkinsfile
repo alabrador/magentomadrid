@@ -9,7 +9,7 @@ pipeline {
             agent {
                 docker {
                     image 'node:alpine'
-                    args '-u root:root'
+                    args '--privileged -it -u root'
                 }
             }
             steps {
@@ -25,7 +25,7 @@ pipeline {
             agent {
                 docker {
                     image 'node:alpine'
-                    args '-u root:root'
+                    args '--privileged -it -u root'
                 }
             }
             steps {

@@ -8,7 +8,7 @@ pipeline {
         stage('Init'){
             agent {
                 docker {
-                    image 'node:erbium-alpine'
+                    image 'node:alpine'
                     args '-u root:root'
                 }
             }
@@ -24,13 +24,13 @@ pipeline {
         stage('Build'){
             agent {
                 docker {
-                    image 'node:erbium-alpine'
+                    image 'node:alpine'
                     args '-u root:root'
                 }
             }
             steps {
                 sh 'npm run build'
-                stash include: 'dist/**/**', name: 'dist'
+                stash includes: 'dist/**/**', name: 'dist'
             }
         }
         stage('Deployment AWS s3') {

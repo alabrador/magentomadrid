@@ -40,13 +40,4 @@ pipeline {
             }
         }
     }
-
-    post {
-        completado {
-            echo 'Pipeline ejecutado correctamente.'
-        }
-        fallido {
-            echo 'Hubo un error en el pipeline.'
-        }
-    }
 }
